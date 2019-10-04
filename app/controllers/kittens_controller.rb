@@ -14,7 +14,13 @@ class KittensController < ApplicationController
   end
 
   def create
-    Kitten.create(kitten_params)
+    @kitten = Kitten.new(kitten_params)
+    if @kitten.save
+      flash[:notice] = 'Kitten was successfully created.'
+      redirect_to root_url
+    else
+      render :new
+    end
   end
 
   def edit
@@ -22,15 +28,18 @@ class KittensController < ApplicationController
   end
 
   def update
-    @kitten = set_kitten
-    @kitten.update(kitten_params)
+    if (@kitten = set_kitten).update(kitten_params)
+      flash[:notice] = 'Kitten was successfully updated.'
+      redirect_to @kitten
+    else
+      render :edit
+    end
   end
 
   def destroy
-    if @kitten = set_kitten
-      @kitten.destroy
-      redirect_to root_url
-    end
+    (@kitten = set_kitten).destroy
+    flash[:notice] = 'Kitten was successfully deleted.'
+    redirect_to root_url
   end
 
   private
