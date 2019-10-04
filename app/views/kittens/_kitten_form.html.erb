@@ -1,0 +1,9 @@
+<%= form_for @kitten do |f|%>
+  <div class="field">
+    <%= f.text_field :name, placeholder: "name" , required: true, autocomplete: 'off'%>
+    <%= f.number_field :age, placeholder: "age" , required: true , in: 0..20%>
+    <%= f.number_field :cuteness, placeholder: "cuteness" , required: true , in: 0..10%>
+    <%= f.number_field :softness, placeholder: "softness" , required: true , in: 0..10%>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary d-none" %>
+<% end %>
