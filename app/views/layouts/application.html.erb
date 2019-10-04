@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OdinKittens</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav>
+      <%= link_to 'Home', kittens_path %>
+      <%= link_to 'New Kitten', new_kitten_path %>
+    </nav>
+
+<% if flash.any? %>
+  <% flash.each do |message_type, message| %>
+    <div class="alert-container">
+      <div class="alert fade show" role="alert">
+        <%= message %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+
+    <%= yield %>
+  </body>
+</html>
